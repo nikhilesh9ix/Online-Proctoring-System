@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Proctoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Face-API.js from CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script defer src="proctor.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Online Proctoring System</h1>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Initializing...</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="video-section">
+                <div class="video-container">
+                    <video id="video" autoplay muted></video>
+                    <canvas id="overlay"></canvas>
+                </div>
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">Start Proctoring</button>
+                    <button id="stopBtn" class="btn btn-danger" disabled>Stop Proctoring</button>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-card">
+                    <h3>Session Information</h3>
+                    <div class="info-item">
+                        <span>Session Duration:</span>
+                        <strong id="duration">00:00:00</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Face Detected:</span>
+                        <strong id="faceDetected">No</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Number of Faces:</span>
+                        <strong id="faceCount">0</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Attention Status:</span>
+                        <strong id="attentionStatus">Not Started</strong>
+                    </div>
+                </div>
+
+                <div class="violations-card">
+                    <h3>Violations Log</h3>
+                    <div class="violations-list" id="violationsList">
+                        <p class="no-violations">No violations detected</p>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Statistics</h3>
+                    <div class="stat-item">
+                        <span>Total Violations:</span>
+                        <strong id="totalViolations">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>No Face Detected:</span>
+                        <strong id="noFaceCount">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Multiple Faces:</span>
+                        <strong id="multipleFacesCount">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Looking Away:</span>
+                        <strong id="lookingAwayCount">0</strong>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <ul>
+                <li>Allow camera access when prompted</li>
+                <li>Ensure your face is clearly visible and well-lit</li>
+                <li>Stay within the camera frame throughout the session</li>
+                <li>Only one person should be visible in the frame</li>
+                <li>Look at the screen during the exam</li>
+                <li>Any suspicious activity will be logged as a violation</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
